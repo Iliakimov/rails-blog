@@ -13,6 +13,10 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    # puts @article.as_json
+    # return @article.as_json
+    puts @article.as_json
+    render json:@article
   end
 
   def create
@@ -38,13 +42,18 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    @articles = Article.all
 
     if @article.update(article_params)
       render json: {status: 200, message: 'Success update'}
-      redirect_to @article
-    else
-      render 'edit'
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    #
+    # redirect_to articles_path
   end
 
   private
