@@ -1,8 +1,9 @@
-<h1>Listing articles</h1>
-<%= link_to 'New article', new_article_path %>
+
 <div class="row">
   <div class="col-md-6">
-    <table>
+    <h1>Listing articles</h1>
+    <button class="create-article-button"><%= link_to 'New article', new_article_path %></button>
+    <table class="articles-list">
       <tr>
         <th>Title</th>
         <th>Text</th>
@@ -48,10 +49,15 @@
           <textarea name="text" id="article_text"></textarea>
         </p>
         <p>
-          <!--<input type="submit" name="commit" value="Save Article" data-disable-with="Save Article">-->
-          <button class="change-article">Save Article</button>
+          <table>
+            <tr>
+              <td><button class="change-article">Save Article</button></td>
+              <td><button class="undo-change-article">Cancel</button></td>
+            </tr>
+          </table>
         </p>
       </form>
     </div>
+
   </div>
 </div>

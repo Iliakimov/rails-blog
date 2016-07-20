@@ -21,10 +21,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    puts '-------------------'
-      puts params.as_json
-      puts @article.as_json
     if @article.save
+      # puts json: {status: 200, message: 'Success create'}
       redirect_to @article
     else
       render 'new'

@@ -1,17 +1,60 @@
 jQuery(function ($) {
     $(document).ready(function(){
-        $('.create-article').click(function (event) {
+        //******************************************************************** СОЗДАНИЕ
+
+        // $('.create-article-button').click(function (event) {
+        //     event.preventDefault();
+        // });
+
+        $('.create-article').click( function () {
             event.preventDefault();
-            var articleData   = $('#new_article').serialize();
-            var articleTitle = $("#article_title").val();
-            var articleText = $("#article_text").val();
-            ClickAction (articleTitle, articleText, articleData);
-        });
+            console.log('start create');
+            var articleData   = $('form#new_article').serialize();
+            console.log(articleData);
+            var articleTitle = $("form#new_article #article_title").val();
+            var articleText = $("form#new_article #article_text").val();
+            if((articleTitle.length > 4)&(articleText.length > 4)) {
+                $.ajax({
+                    url: '/articles/',
+                    type: 'POST',
+                    data: articleData,
+                    success: function () {
+                        console.log('success create');
+                        
+                    },
+                    error: function () {
+                        console.log('error create')
+                    }
+                })
+            }
+            else {
+                console.log("create error");
+                $('form#new_article #errors').show(300);
+                if (articleTitle.length <= 4) {
+                    $('form#new_article #title_error').show(300)
+                }
+                else {
+                    $('form#new_article #title_error').hide(300)
+                }
+                if (articleText.length <= 4) {
+                    $('form#new_article #text_error').show(300)
+                }
+                else {
+                    $('form#new_article #text_error').hide(300)
+                }
+            }
+        })
+
+        // $('.undo-create-article').click( function (event) {
+        //     event.preventDefault();
+        // })
+
+        //******************************************************************** УДАЛЕНИЕ
 
         $('.delete-article-button').click( function (event) {
             event.preventDefault();
             var current_item_tr = $(this).parents('tr')[0];
-            // if(confirm("Вы уверены?")){
+            if(confirm("Вы уверены?")){
             $.ajax({
                 url: '/articles/'+$(current_item_tr).attr('data-item_id'),
                 type: 'DELETE',
@@ -23,14 +66,17 @@ jQuery(function ($) {
                     console.log("delete error");
                 }
             })
-            // }
+            }
         })
+
+        //******************************************************************** ИЗМЕНЕНИЕ
+
         $('.edit-article-button').click( function () {
             var current_item_tr = $(this).parents('tr')[0];
             var current_id = $(current_item_tr).attr('data-item_id');
             $('#article_title').attr('value','');
             $('#article_text').text('');
-            console.log("starting edit");
+            $('.new-article').hide(300);
             $('.edit-article').show(300);
             $.ajax({
                 url: '/articles/'+current_id+'/edit',
@@ -53,9 +99,9 @@ jQuery(function ($) {
             event.preventDefault();
             var current_form = $('form#edit_article');
             var articleId = $(current_form).attr('data-item_id');
-            var articleData   = $('#edit_article').serialize();
-            var articleTitle = $("#article_title").val();
-            var articleText = $("#article_text").val();
+            var articleData   = $('form#edit_article #edit_article').serialize();
+            var articleTitle = $("form#edit_article #article_title").val();
+            var articleText = $("form#edit_article #article_text").val();
             if((articleTitle.length > 4)&(articleText.length > 4)) {
                 $.ajax({
                     url: '/articles/' + articleId,
@@ -78,49 +124,26 @@ jQuery(function ($) {
                 // $('#errors').css("display", "block");
                 $('#errors').show(300);
                 if (articleTitle.length <= 4) {
-                    $('#title_error').show(300)
+                    $('form#edit_article #title_error').show(300)
                 }
                 else {
-                    $('#title_error').hide(300)
+                    $('form#edit_article #title_error').hide(300)
                 }
                 if (articleText.length <= 4) {
-                    $('#text_error').show(300)
+                    $('form#edit_article #text_error').show(300)
                 }
                 else {
-                    $('#text_error').hide(300)
+                    $('form#edit_article #text_error').hide(300)
                 }
             }
         });
-        function ClickAction (title, text, msg) {
-            if((title.length > 4)&(text.length > 4)) {
-                $.ajax({
-                    url: '/articles',
-                    type: 'POST',
-                    data: msg,
-                    success: function () {
-                    },
-                    error: function () {
-                    }
-                })
-            }
-            else {
-                console.log("error");
-                // $('#errors').css("display", "block");
-                $('#errors').show(300);
-                if (title.length <= 4) {
-                    $('#title_error').show(300)
-                }
-                else {
-                    $('#title_error').hide(300)
-                }
-                if (text.length <= 4) {
-                    $('#text_error').show(300)
-                }
-                else {
-                    $('#text_error').hide(300)
-                }
-            }
-        }
+
+        $('.undo-change-article').click (function (event) {
+            event.preventDefault();
+            $('form#edit_article #article_title').attr('value','');
+            $('form#edit_article #article_text').text('');
+            $('.edit-article').hide(300);
+        })
     });
 });
 
