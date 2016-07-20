@@ -6,8 +6,10 @@ jQuery(function ($) {
             event.preventDefault();
             console.log('start create');
             var articleData   = $('form#new_article').serialize();
+            console.log(articleData);
             var articleTitle = $("form#new_article #article_title").val();
             var articleText = $("form#new_article #article_text").val();
+            var articleCategory = $("form#new_article #article_category").val();
             if((articleTitle.length > 4)&(articleText.length > 4)) {
                 $.ajax({
                     url: '/articles/',
@@ -39,7 +41,7 @@ jQuery(function ($) {
                     $('form#new_article #text_error').hide(300)
                 }
             }
-        })
+        });
 
         //******************************************************************** УДАЛЕНИЕ
 
@@ -48,7 +50,7 @@ jQuery(function ($) {
             var current_item_tr = $(this).parents('tr')[0];
             // if(confirm("Вы уверены?")){
             $.ajax({
-                url: '/comments/'+$(current_item_span).attr('data-item_id'),
+                url: '/articles/'+$(current_item_tr).attr('data-item_id'),
                 type: 'DELETE',
                 success: function () {
                     $(current_item_tr).remove();
@@ -77,6 +79,11 @@ jQuery(function ($) {
                     var current_form = $('form#edit_article');
                     $(current_form).attr('data-item_id',jsondata.id);
                     $('#article_title').attr('value',jsondata.title);
+                    if(jsondata.category_id==null) {
+                        $('#article_category_id').val(5);
+                    } else {
+                        $('#article_category_id').val(jsondata.category_id);
+                    };
                     if ((jsondata.text) == (null)) {
                         $('#article_text').text('');
                     } else {
@@ -89,10 +96,13 @@ jQuery(function ($) {
         $('.change-article').click (function (event) {
             event.preventDefault();
             var current_form = $('form#edit_article');
-            var articleId = $(current_form).attr('data-item_id');
-            var articleData   = $('form#edit_article #edit_article').serialize();
+            var articleId = + ($(current_form).attr('data-item_id'));
+            console.log(articleId);
+            var articleData   = $('form#edit_article').serialize();
+            console.log(articleData);
             var articleTitle = $("form#edit_article #article_title").val();
             var articleText = $("form#edit_article #article_text").val();
+            console.log(articleData);
             if((articleTitle.length > 4)&(articleText.length > 4)) {
                 $.ajax({
                     url: '/articles/' + articleId,
@@ -104,6 +114,9 @@ jQuery(function ($) {
                         var all_td = current_tr.children([$('td')]);
                         all_td.eq(0).text(articleTitle);
                         all_td.eq(1).text(articleText);
+                        $('form#edit_article #article_title').attr('value','');
+                        $('form#edit_article #article_text').text('');
+                        $('form#edit_article #article_category').attr('value',"5");
                     },
                     error: function () {
                         console.log("change error")
@@ -130,9 +143,10 @@ jQuery(function ($) {
 
         $('.undo-change-article').click (function (event) {
             event.preventDefault();
+            $('.edit-article').hide(300);
             $('form#edit_article #article_title').attr('value','');
             $('form#edit_article #article_text').text('');
-            $('.edit-article').hide(300);
+            $('form#edit_article #article_category').attr('value',"5");
         })
     });
 });
