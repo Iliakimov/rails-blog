@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  resources :categories do
+
+  end
+
   resources :articles do
     resources :comments
   end
