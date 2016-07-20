@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       # puts json: {status: 200, message: 'Success create'}
-      redirect_to @article
+      render json: {id: @article.id}
     else
       render 'new'
     end

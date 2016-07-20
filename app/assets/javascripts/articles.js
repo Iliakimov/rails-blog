@@ -2,15 +2,10 @@ jQuery(function ($) {
     $(document).ready(function(){
         //******************************************************************** СОЗДАНИЕ
 
-        // $('.create-article-button').click(function (event) {
-        //     event.preventDefault();
-        // });
-
-        $('.create-article').click( function () {
+        $('.create-article').click( function (event) {
             event.preventDefault();
             console.log('start create');
             var articleData   = $('form#new_article').serialize();
-            console.log(articleData);
             var articleTitle = $("form#new_article #article_title").val();
             var articleText = $("form#new_article #article_text").val();
             if((articleTitle.length > 4)&(articleText.length > 4)) {
@@ -18,9 +13,10 @@ jQuery(function ($) {
                     url: '/articles/',
                     type: 'POST',
                     data: articleData,
-                    success: function () {
-                        console.log('success create');
-                        
+                    dataType: 'json',
+                    success: function (jsondata) {
+                        console.log(jsondata);
+                        window.location.replace(jsondata.id);
                     },
                     error: function () {
                         console.log('error create')
@@ -45,28 +41,23 @@ jQuery(function ($) {
             }
         })
 
-        // $('.undo-create-article').click( function (event) {
-        //     event.preventDefault();
-        // })
-
         //******************************************************************** УДАЛЕНИЕ
 
         $('.delete-article-button').click( function (event) {
             event.preventDefault();
             var current_item_tr = $(this).parents('tr')[0];
-            if(confirm("Вы уверены?")){
+            // if(confirm("Вы уверены?")){
             $.ajax({
-                url: '/articles/'+$(current_item_tr).attr('data-item_id'),
+                url: '/comments/'+$(current_item_span).attr('data-item_id'),
                 type: 'DELETE',
                 success: function () {
-                    // $(current_item_tr).hide(300);
                     $(current_item_tr).remove();
                 },
                 error: function () {
                     console.log("delete error");
                 }
             })
-            }
+            // }
         })
 
         //******************************************************************** ИЗМЕНЕНИЕ
@@ -121,7 +112,6 @@ jQuery(function ($) {
             }
             else {
                 console.log("error");
-                // $('#errors').css("display", "block");
                 $('#errors').show(300);
                 if (articleTitle.length <= 4) {
                     $('form#edit_article #title_error').show(300)

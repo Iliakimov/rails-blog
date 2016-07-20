@@ -22,6 +22,7 @@
             </td>
           </tr>
       <% end %>
+
     </table>
   </div>
   <div class="col-md-6">
@@ -29,25 +30,7 @@
       <h1>Editing article</h1>
 
       <form id="edit_article" data-item_id="" accept-charset="UTF-8">
-        <div id="errors" style="display: none">
-          <h2>
-            Ошибка!
-          </h2>
-          <ul>
-            <li id="title_error" style="display: none">Заголовок должен содержать 5 и более символов.</li>
-            <li id="text_error" style="display: none">Текст должен содержать 5 и более символов.</li>
-          </ul>
-        </div>
-        <p>
-          <label for="article_title">Title</label>
-          <br>
-          <input type="text" name="title" id="article_title">
-        </p>
-        <p>
-          <label for="article_text">Text</label>
-          <br>
-          <textarea name="text" id="article_text"></textarea>
-        </p>
+        <%= render 'articles/formpart' %>
         <p>
           <table>
             <tr>
