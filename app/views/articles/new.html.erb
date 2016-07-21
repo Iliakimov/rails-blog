@@ -1,16 +1,13 @@
-<div class="new-article">
-  <h1>New article</h1>
+<%= render 'layouts/navbar' %>
+<div class="new-article text-center">
+  <h1>Создание статьи</h1>
 
   <form id="new_article" accept-charset="UTF-8">
     <%= render 'articles/formpart' %>
-    <p>
-      <table>
-        <tr>
-          <td><button class="create-article">Save Article</button></td>
-          <td><button class="undo-create-article"> <%= link_to 'Back', articles_path %></button></td>
-        </tr>
-      </table>
-    </p>
+    <div>
+      <button class="create-article">Сохранить</button>
+      <button class="undo-create-article"> <%= link_to 'Назад', articles_path %></button>
+    </div>
   </form>
 </div>
 

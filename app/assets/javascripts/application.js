@@ -15,3 +15,19 @@
 //= require jquery_ujs
 // require turbolinks
 //= require_tree .
+
+jQuery(function ($) {
+    $(document).ready(function () {
+        var adress = window.location.href;
+        if (adress.search(/new/) > 0) {
+            $('.nav-create').attr('class', 'current');
+        } else {
+            if (adress.search(/categories/) > 0) {
+                $('.nav-categories').attr('class', 'current');
+            } else {
+                $('.nav-articles').attr('class', 'current');
+            }
+        }
+        $('.active').css('background-color','#b3dcee')
+    })
+});

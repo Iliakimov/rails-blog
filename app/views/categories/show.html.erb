@@ -1,46 +1,44 @@
-<p>
-  <h1>
-    <%= @category.name %>
-  </h1>
-</p>
+<%= render 'layouts/navbar' %>
+<div class="container category-show">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>
+        <%= @category.name %>
+      </h1>
 
-<table class="articles-list">
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-  </tr>
-
-  <% Article.where("category_id = ?", @category.id).order(updated_at: :asc).each do |article| %>
-      <tr data-item_id="<%= article.id %>">
-        <td><%= article.title %></td>
-        <td><%= article.text %></td>
-        <td><button><%= link_to 'Show', article_path(article) %></button></td>
-        <td>
-          <button class="edit-article-button">Edit</button>
-        </td>
-        <td>
-          <button class="delete-article-button">Delete</button>
-        </td>
-      </tr>
-  <% end %>
-
-</table>
-</div>
-<div class="col-md-6">
-  <div class="edit-article" style="display: none">
-    <h1>Editing article</h1>
-
-    <form id="edit_article" data-item_id="" accept-charset="UTF-8">
-      <%= render 'articles/formpart' %>
-      <p>
-      <table>
+      <table class="articles-list">
         <tr>
-          <td><button class="change-article">Save Article</button></td>
-          <td><button class="undo-change-article">Cancel</button></td>
+          <th>
+            <h3>Название</h3>
+          </th>
         </tr>
-      </table>
-      </p>
-    </form>
-  </div>
 
-<%= link_to 'Back', categories_path %>
+        <% Article.where("category_id = ?", @category.id).order(updated_at: :asc).each do |article| %>
+            <tr class="article-srting" data-item_id="<%= article.id %>">
+              <td><%= article.title %></td>
+              <td class="control-btn"><button class="simple-button hard-button"><%= link_to 'Показать', article_path(article) %></button></td>
+              <td class="control-btn">
+                <button class="edit-article-button simple-button">Изменить</button>
+              </td>
+              <td class="control-btn">
+                <button class="delete-article-button simple-button">Удалить</button>
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-6 text-center">
+      <div class="edit-article" style="display: none">
+        <h1>Изменение статьи</h1>
+
+        <form id="edit_article" data-item_id="" accept-charset="UTF-8">
+          <%= render 'articles/formpart' %>
+          <p>
+            <button class="change-article simple-button">Сохранить изменения</button>
+            <button class="undo-change-article simple-button">Отмена</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

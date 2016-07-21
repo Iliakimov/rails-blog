@@ -1,22 +1,24 @@
-<div class="row">
-  <div class="col-md-6">
-    <h1>Listing categories</h1>
-    <table class="articles-list">
-      <tr>
-        <th>
-          <h3>Name</h3>
-        </th>
-      </tr>
+<%= render 'layouts/navbar' %>
+<div class="container categories-index">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Список категорий</h1>
+      <table class="articles-list">
+        <tr>
+          <th>
+            <h3>Название</h3>
+          </th>
+        </tr>
 
-      <% @categories.each do |category|%>
-          <tr data-item_id="<%= category.id %>">
-            <td><%= category.name %></td>
-            <td>
-              <%= link_to 'Show', category_path(category) %>
-            </td>
-          </tr>
-      <% end %>
-    </table>
-    <%= link_to 'Back', controller: 'articles' %>
+        <% @categories.each do |category|%>
+            <tr data-item_id="<%= category.id %>">
+              <td><%= category.name %></td>
+              <td>
+                <button class="simple-button hard-button"><%= link_to 'Показать', category_path(category) %></button>
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

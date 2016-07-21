@@ -1,6 +1,8 @@
-<span data-comment_id="<%= comment.id %>">
+<div data-comment_id="<%= comment.id %>" class="comment">
   <p>
-    <strong><%= comment.commenter %></strong>
+    <strong>
+      <%= comment.author %>
+    </strong>
   </p>
 
   <p>
@@ -8,6 +10,6 @@
   </p>
 
   <p>
-    <button class="destroy-comment-button">X</button>
+    <button class="destroy-comment-button">x</button>
   </p>
-</span>
+</div>

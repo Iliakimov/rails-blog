@@ -1,13 +1,14 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
     <p>
-      <%= f.label :commenter %><br>
-      <%= f.text_field :commenter %>
+      <%= f.label :Автор %><br>
+      <%= f.text_field :author %>
     </p>
     <p>
-      <%= f.label :body %><br>
+      <%= f.label :Текст %><br>
       <%= f.text_area :body %>
     </p>
-    <p>
-      <%= f.submit %>
-    </p>
+    <div class="">
+          <%= f.submit 'Отправить', class: "create-comment-button"%>
+          <button class="hide-comment-form">Отмена</button>
+    </div>
 <% end %>

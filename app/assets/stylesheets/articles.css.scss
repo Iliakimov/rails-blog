@@ -1,0 +1,246 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$color-lb: #00b3ee;
+.container {
+  padding: 15px;
+}
+.row {
+  padding: 15px;
+}
+
+.show-article-container {
+  .article {
+    .title {
+      color: $color-lb;
+    }
+  }
+
+  .comments-list {
+    .comment {
+      padding: 20px;
+      position: relative;
+      .destroy-comment-button {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        background-color: transparent;
+        border-width: 0px;
+      }
+      .destroy-comment-button:hover {
+        color: $color-lb;
+      }
+    }
+
+    .comment:hover {
+      background-color: #F7F7F7;
+
+      .destroy-comment-button {
+        display: block;
+      }
+    }
+
+  }
+
+  .form-and-buttons {
+    .open-comment-form-button {
+      background-color: transparent;
+      border-width: 0px;
+      font-size: 18px;
+    }
+    .open-comment-form-button:hover {
+      color: $color-lb;
+    }
+    .open-comment-form-button:focus {
+      outline: none;
+    }
+    .create-comment-button {
+      display: inline-block;
+      background-color: transparent;
+      border-width: 0px;
+    }
+    .create-comment-button:hover {
+      color: $color-lb;
+    }
+    .create-comment-button:focus {
+      outline: none;
+    }
+    .hide-comment-form {
+      display: inline-block;
+      background-color: transparent;
+      border-width: 0px;
+    }
+    .hide-comment-form:hover {
+      color: $color-lb;
+    }
+    .hide-comment-form:focus {
+      outline: none;
+    }
+
+
+    .text-in-form {
+      margin-top: 2px;
+      font-size: 18px;
+    }
+  }
+
+}
+
+#errors {
+  color: #730E15;
+}
+
+.simple-button {
+  display: inline-block;
+  background-color: transparent;
+  border-width: 0px;
+}
+.simple-button:hover {
+  color: $color-lb;
+}
+.simple-button:focus {
+  outline: none;
+}
+.hard-button {
+  a {
+    color: black;
+  }
+  a:hover {
+    text-decoration: none;
+    color: $color-lb;
+  }
+}
+.hard-button:hover {
+  cursor: default;
+}
+
+.index-container {
+  h1 {
+    color: $color-lb;
+  }
+  tr.article-string {
+    height: 45px;
+    .control-btn {
+      display: none;
+    }
+    .article-name {
+     cursor: default;
+    }
+    td {
+      padding: 10px !important;
+    }
+  }
+
+  tr.article-string:hover {
+    background-color: #F7F7F7;
+    .article-name {
+      color: $color-lb;
+    }
+    .control-btn {
+      display: inline-block;
+    }
+  }
+}
+.new-article {
+  h1 {
+    color: $color-lb;
+  }
+  .create-article {
+    display: inline-block;
+    background-color: transparent;
+    border-width: 0px;
+  }
+  .create-article:hover {
+    color: $color-lb;
+  }
+  .create-article:focus {
+    outline: none;
+  }
+  .undo-create-article {
+    display: inline-block;
+    background-color: transparent;
+    border-width: 0px;
+    a {
+      color: black;
+    }
+    a:hover {
+      text-decoration: none;
+      color: $color-lb;
+    }
+  }
+  .undo-create-article:hover {
+    cursor: default;
+  }
+}
+.categories-index {
+  h1 {
+    color: $color-lb;
+  }
+}
+
+.category-show {
+  h1 {
+    color: $color-lb;
+  }
+  tr.article-srting {
+    height: 45px;
+    .control-btn {
+      display: none;
+    }
+    .article-name {
+      cursor: default;
+    }
+    td {
+      padding: 10px !important;
+    }
+  }
+
+  tr.article-srting:hover {
+    background-color: #F7F7F7;
+    .article-name {
+      color: $color-lb;
+    }
+    .control-btn {
+      display: inline-block;
+    }
+  }
+}
+
+.navbar {
+  border-width: 0px !important;
+  .navbar-brand {
+    color: white !important;
+    cursor: default;
+  }
+  background-color: $color-lb !important;
+  li {
+
+    a {
+      color: #F7F7F7 !important;
+    }
+  }
+  li:hover {
+    a {
+      color: #d9d9d9 !important;
+    }
+  }
+
+}
+li.current {
+  background-color: white !important;
+
+  //#b3dcee
+  a {
+    color: dimgray !important;
+  }
+}
+li.current:hover {
+  a {
+    cursor: default;
+    color:dimgray !important;
+  }
+}
+.collapse {
+  border-width: 0px;
+}

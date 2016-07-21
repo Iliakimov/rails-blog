@@ -2,20 +2,35 @@ jQuery(function ($) {
     $(document).ready(function(){
         $('.destroy-comment-button').click( function (event) {
             event.preventDefault();
-            var current_item_span = $(this).parents('span')[0];
+            var current_item_div = $(this).parents('div')[0];
             var adress = window.location.href;
             var articleId = adress.slice(adress.search(/articles/)+9);
             $.ajax({
-                url: '/articles/'+articleId+'/comments/'+$(current_item_span).attr('data-comment_id'),
+                url: '/articles/'+articleId+'/comments/'+$(current_item_div).attr('data-comment_id'),
                 type: 'DELETE',
                 success: function () {
-                    $(current_item_span).remove();
+                    $(current_item_div).remove();
                 },
                 error: function () {
                     console.log("delete error");
                 }
             })
         });
+        
+        $('.open-comment-form-button').click(function (e) {
+            e.preventDefault();
+            $(this).hide();
+            $('.comment-form').show();
+
+        });
+
+        $('.hide-comment-form').click(function (e) {
+            e.preventDefault();
+            $('.comment-form').hide();
+            $('.open-comment-form-button').show();
+            $('#comment_body').text('');
+            $('#comment_author').val('');
+        })
 
         // $('.create-comment-button').click( function (event) {
         //     event.preventDefault();
