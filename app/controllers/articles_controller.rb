@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       # puts json: {status: 200, message: 'Success create'}
-      redirect_to @article
+      render json: {id: @article.id}
     else
       render 'new'
     end
@@ -56,6 +56,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.permit(:title, :text)
+      params.permit(:id, :title, :text, :category_id)
     end
 end

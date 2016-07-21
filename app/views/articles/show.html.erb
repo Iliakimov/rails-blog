@@ -1,11 +1,26 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<%= render 'layouts/navbar' %>
+<div class="container show-article-container">
+  <div class="row">
+    <div class="article">
+      <h1 class="title">
+          <%= @article.title %>
+      </h1>
+      <p class="text">
+        <%= @article.text %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+  <hr>
 
-<%= link_to 'Back', articles_path %>
+  <div class="comments-list">
+    <%= render @article.comments %>
+  </div>
+  <div class="text-center form-and-buttons">
+    <button class="open-comment-form-button">Оставить комментарий</button>
+    <div class="comment-form" style="display: none;">
+      <p class="text-in-form">Введите текст комментария:</p>
+      <%= render 'comments/form' %>
+    </div>
+  </div>
+</div>

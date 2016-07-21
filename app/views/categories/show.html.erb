@@ -1,14 +1,21 @@
-
-  <%= render 'layouts/navbar' %>
-  <div class="container index-container">
+<%= render 'layouts/navbar' %>
+<div class="container category-show">
   <div class="row">
     <div class="col-md-6">
-      <h1 class="page-title">Список статей</h1>
+      <h1>
+        <%= @category.name %>
+      </h1>
+
       <table class="articles-list">
-        <% @articles.each do |article| %>
-            <tr class="article-string" data-item_id="<%= article.id %>">
-              <td class="article-name"><%= article.title %></td>
-              <!--<td><% article.text %></td>-->
+        <tr>
+          <th>
+            <h3>Название</h3>
+          </th>
+        </tr>
+
+        <% Article.where("category_id = ?", @category.id).order(updated_at: :asc).each do |article| %>
+            <tr class="article-srting" data-item_id="<%= article.id %>">
+              <td><%= article.title %></td>
               <td class="control-btn"><button class="simple-button hard-button"><%= link_to 'Показать', article_path(article) %></button></td>
               <td class="control-btn">
                 <button class="edit-article-button simple-button">Изменить</button>
@@ -18,7 +25,6 @@
               </td>
             </tr>
         <% end %>
-
       </table>
     </div>
     <div class="col-md-6 text-center">
@@ -28,12 +34,11 @@
         <form id="edit_article" data-item_id="" accept-charset="UTF-8">
           <%= render 'articles/formpart' %>
           <p>
-            <button class="change-article simple-button">Сохранить статью</button>
+            <button class="change-article simple-button">Сохранить изменения</button>
             <button class="undo-change-article simple-button">Отмена</button>
           </p>
         </form>
       </div>
-
     </div>
   </div>
 </div>
