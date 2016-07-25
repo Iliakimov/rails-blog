@@ -21,10 +21,8 @@
   <br>
   <select name="category_id" id="article_category_id">
     <option disabled>Выберите категорию</option>
-    <option value=5></option>
-    <option value=1>Angular</option>
-    <option value=2>D3</option>
-    <option value=3>Rails</option>
-    <option value=4>Ruby</option>
+    <% @categories.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
   </select>
 </p>
