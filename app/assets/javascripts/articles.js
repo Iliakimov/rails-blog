@@ -4,9 +4,7 @@ jQuery(function ($) {
 
         $('.create-article').click( function (event) {
             event.preventDefault();
-            console.log('start create');
             var articleData   = $('form#new_article').serialize();
-            console.log(articleData);
             var articleTitle = $("form#new_article #article_title").val();
             var articleText = $("form#new_article #article_text").val();
             var articleCategory = $("form#new_article #article_category").val();
@@ -17,7 +15,6 @@ jQuery(function ($) {
                     data: articleData,
                     dataType: 'json',
                     success: function (jsondata) {
-                        console.log(jsondata);
                         window.location.replace(jsondata.id);
                     },
                     error: function () {
@@ -97,12 +94,9 @@ jQuery(function ($) {
             event.preventDefault();
             var current_form = $('form#edit_article');
             var articleId = + ($(current_form).attr('data-item_id'));
-            console.log(articleId);
             var articleData   = $('form#edit_article').serialize();
-            console.log(articleData);
             var articleTitle = $("form#edit_article #article_title").val();
             var articleText = $("form#edit_article #article_text").val();
-            console.log(articleData);
             if((articleTitle.length > 4)&(articleText.length > 4)) {
                 $.ajax({
                     url: '/articles/' + articleId,
@@ -147,6 +141,23 @@ jQuery(function ($) {
             $('form#edit_article #article_text').text('');
             $('form#edit_article #article_category').attr('value',"5");
         })
+
+
+        //******************************************************************** КАТЕГОРИИ
+        // $.ajax({
+        //     url: '/categories/',
+        //     type: 'GET',
+        //     dataType: 'json',
+        //     success: function (jsondata) {
+        //         console.log(jsondata);
+        //         console.log(jsondata.length);
+        //         console.log(jsondata[1]);
+        //         for(i = 0; i < jsondata.length; i++){
+        //             num = i+1;
+        //             $('#article_category_id').append('<option value='+num+'>'+jsondata[i].name+'</option>>');
+        //         }
+        //     }
+        // });
     });
 });
 

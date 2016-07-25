@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
+    @categories = Category.all
   end
 
   def show
@@ -8,7 +9,9 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    # @article = Article.new
+    @categories = Category.all
+    # render json:@categories
   end
 
   def edit
@@ -21,10 +24,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    puts ('start')
     if @article.save
+      puts ('ok')
       # puts json: {status: 200, message: 'Success create'}
       render json: {id: @article.id}
     else
+      puts('error')
       render 'new'
     end
   end
