@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.airStickyBlock.min.js
 // require turbolinks
 //= require_tree .
 
@@ -28,6 +29,7 @@ jQuery(function ($) {
                 $('.nav-articles').attr('class', 'current');
             }
         }
-        $('.active').css('background-color','#b3dcee')
+        $('.active').css('background-color','#b3dcee');
     })
 });
+

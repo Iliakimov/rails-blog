@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  # before_filter :authenticate_user!, except => [:show, :index]
+
   def index
     @articles = Article.all
     @categories = Category.all
@@ -6,6 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @categories = Category.all
   end
 
   def new

@@ -61,9 +61,14 @@ jQuery(function ($) {
 
         //******************************************************************** ИЗМЕНЕНИЕ
 
-        $('.edit-article-button').click( function () {
-            var current_item_tr = $(this).parents('tr')[0];
-            var current_id = $(current_item_tr).attr('data-item_id');
+        // $('.change-article').click( function (event) {
+        //     event.preventDefault();
+        //     $('#myModal').modal(options)
+        // });
+
+        $('.change-article').click( function () {
+            var adress = window.location.href;
+            var current_id = adress.slice(adress.search(/articles/)+9);
             $('#article_title').attr('value','');
             $('#article_text').text('');
             $('.new-article').hide();
@@ -90,10 +95,10 @@ jQuery(function ($) {
             });
         });
 
-        $('.change-article').click (function (event) {
+        $('.save-changes').click (function (event) {
             event.preventDefault();
-            var current_form = $('form#edit_article');
-            var articleId = + ($(current_form).attr('data-item_id'));
+            var adress = window.location.href;
+            var articleId = adress.slice(adress.search(/articles/)+9);
             var articleData   = $('form#edit_article').serialize();
             var articleTitle = $("form#edit_article #article_title").val();
             var articleText = $("form#edit_article #article_text").val();
@@ -103,13 +108,9 @@ jQuery(function ($) {
                     type: 'PATCH',
                     data: articleData,
                     success: function () {
-                        $('.edit-article').hide();
-                        var current_tr = $('tr[data-item_id="' + articleId +'"]');
-                        var all_td = current_tr.children([$('td')]);
-                        all_td.eq(0).text(articleTitle);
-                        $('form#edit_article #article_title').attr('value','');
-                        $('form#edit_article #article_text').text('');
-                        $('form#edit_article #article_category').attr('value',"5");
+                        $('.article .title').text(articleTitle);
+                        $('.article .text').text(articleText);
+                        $('#myModal').modal('hide');
                     },
                     error: function () {
                         console.log("change error")
@@ -159,5 +160,33 @@ jQuery(function ($) {
         //     }
         // });
     });
+});
+
+jQuery(document).ready(function($){
+    window.onload = function() {
+        $('.airSticky').airStickyBlock({
+            stopBlock: '.airSticky_stop-block'
+        });
+    };
+
+    // $('a#go').click( function(event){ // лoвим клик пo ссылки с id="go"
+    //     event.preventDefault(); // выключaем стaндaртную рoль элементa
+    //     $('#overlay').fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+    //         function(){ // пoсле выпoлнения предъидущей aнимaции
+    //             $('#modal_form')
+    //                 .css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+    //                 .animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+    //         });
+    // });
+    // /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+    // $('#modal_close, #overlay').click( function(){ // лoвим клик пo крестику или пoдлoжке
+    //     $('#modal_form')
+    //         .animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
+    //             function(){ // пoсле aнимaции
+    //                 $(this).css('display', 'none'); // делaем ему display: none;
+    //                 $('#overlay').fadeOut(400); // скрывaем пoдлoжку
+    //             }
+    //         );
+    // });
 });
 

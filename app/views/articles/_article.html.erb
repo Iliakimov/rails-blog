@@ -1,0 +1,14 @@
+<div class="">
+  <div class="article-item" onclick="location.href='<%= article_path(article) %>';" style="cursor: pointer;">
+    <div data-article_id="<%= article.id %>">
+      <div>
+        <h2><%= article.title %>
+          <div class="date-ago">[ Создана <%= time_ago_in_words(article.created_at) %> назад ]</div></h2>
+        <p><%= article.text[0..100] %>...</p>
+
+      </div>
+      <!--<div class="col-md-2">-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

@@ -1,9 +1,15 @@
 source 'https://rubygems.org'
 
-# Use Twitter-Bootstrap for style
+
+gem 'russian'
+# Authorization
+gem 'devise'
+# DataBase
 gem 'pg'
+# for generate fake data after db reset
 gem 'factory_girl_rails'
 gem 'faker'
+# Use Twitter-Bootstrap for style
 gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'

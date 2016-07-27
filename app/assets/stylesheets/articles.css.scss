@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $color-lb: #00b3ee;
 .container {
-  padding: 15px;
+  padding-top: 0px;
 }
 .row {
   padding: 15px;
@@ -13,6 +13,9 @@ $color-lb: #00b3ee;
   .article {
     .title {
       color: $color-lb;
+    }
+    .change-article {
+      display: inline-block;
     }
   }
 
@@ -119,28 +122,50 @@ $color-lb: #00b3ee;
   h1 {
     color: $color-lb;
   }
-  tr.article-string {
-    height: 45px;
-    .control-btn {
-      display: none;
+
+  .article-item {
+    padding: 20px;
+    //min-height: 200px;
+    min-width: 600px;
+    h2 {
+      color: $color-lb;
+      margin-top: 0px;
+
+      .date-ago {
+        color: black;
+        font-size: 13px !important;
+        font-weight: 200;
+      }
     }
-    .article-name {
-     cursor: default;
-    }
-    td {
-      padding: 10px !important;
-    }
+
+
   }
 
-  tr.article-string:hover {
-    background-color: #F7F7F7;
-    .article-name {
-      color: $color-lb;
-    }
-    .control-btn {
-      display: inline-block;
-    }
+  .article-item:hover {
+    background-color: #f1f1f1 !important;
   }
+  //tr.article-string {
+  //  height: 45px;
+  //  .control-btn {
+  //    display: none;
+  //  }
+  //  .article-name {
+  //   cursor: default;
+  //  }
+  //  td {
+  //    padding: 10px !important;
+  //  }
+  //}
+  //
+  //tr.article-string:hover {
+  //  background-color: #F7F7F7;
+  //  .article-name {
+  //    color: $color-lb;
+  //  }
+  //  .control-btn {
+  //    display: inline-block;
+  //  }
+  //}
 }
 .new-article {
   h1 {
@@ -208,7 +233,9 @@ $color-lb: #00b3ee;
 }
 
 .navbar {
+  padding: 15px;
   border-width: 0px !important;
+  border-radius: 0px !important;
   .navbar-brand {
     color: white !important;
     cursor: default;
@@ -220,12 +247,15 @@ $color-lb: #00b3ee;
       color: #F7F7F7 !important;
     }
   }
+  li.or-text {
+    margin-top: 15px;
+    color: #545454;
+  }
   li:hover {
     a {
       color: #d9d9d9 !important;
     }
   }
-
 }
 li.current {
   background-color: white !important;
@@ -243,4 +273,45 @@ li.current:hover {
 }
 .collapse {
   border-width: 0px;
+}
+
+//.sticky {
+//  position: fixed;
+//  display: block;
+//  margin-left: 500px;
+//  top: 0px;  /* если ноль заменить на число (и в скрипте тоже), то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом. Применим, например, при фиксированном сверху меню */
+//  z-index: 101;
+//}
+
+.right-bar {
+  //background-color: #f1f1f1;
+  display: block;
+  height: 500px;
+  width: 300px;
+  padding: 30px;
+  padding-top: 20px;
+  //height: 100%;
+  .nav {
+    a:hover {
+      background-color: inherit;
+      cursor: pointer;
+    }
+    .second-level-nav {
+      list-style-type: none;
+    }
+    hr {
+      width: 240px;
+      //border-color: #333333;
+    }
+  }
+}
+
+.part-of-form {
+  #article_title {
+    width: 500px;
+  }
+  #article_text {
+    width: 500px;
+    height: 200px;
+  }
 }

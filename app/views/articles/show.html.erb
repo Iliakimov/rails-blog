@@ -1,26 +1,89 @@
 <%= render 'layouts/navbar' %>
-<div class="container show-article-container">
-  <div class="row">
-    <div class="article">
-      <h1 class="title">
-          <%= @article.title %>
-      </h1>
-      <p class="text">
-        <%= @article.text %>
-      </p>
+<div class="container airSticky_stop-block">
+  <div class="show-article-container">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="article">
+          <h1 class="title">
+            <%= @article.title %>
+          </h1>
+          <p class="text">
+            <%= @article.text %>
+          </p>
+
+          <div class="row text-center">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+              <%= time_ago_in_words(@article.created_at) %> назад
+            </div>
+            <div class="col-md-4">
+              <button class="change-article simple-button" data-toggle="modal" data-target="#myModal">Изменить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="comments-list">
+        <%= render @article.comments %>
+      </div>
+      <div class="text-center form-and-buttons">
+        <button class="open-comment-form-button" data-toggle="modal" data-target="#comment-form-Modal">Оставить комментарий</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="airSticky">
+        <%= render 'layouts/rightbar' %>
+      </div>
     </div>
   </div>
+</div>
 
-  <hr>
+<!--<div id="modal_form">&lt;!&ndash; Окно изменения статьи &ndash;&gt;-->
+  <!--<span id="modal_close">X</span>-->
+<!--</div>-->
+<!--<div id="overlay"></div>&lt;!&ndash; Пoдлoжкa &ndash;&gt;-->
 
-  <div class="comments-list">
-    <%= render @article.comments %>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Изменение статьи</h4>
+      </div>
+      <div class="modal-body">
+        <form id="edit_article" data-item_id="" accept-charset="UTF-8">
+          <%= render 'articles/formpart' %>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary save-changes">Сохранить изменения</button>
+      </div>
+    </div>
   </div>
-  <div class="text-center form-and-buttons">
-    <button class="open-comment-form-button">Оставить комментарий</button>
-    <div class="comment-form" style="display: none;">
-      <p class="text-in-form">Введите текст комментария:</p>
-      <%= render 'comments/form' %>
+</div>
+
+<div class="modal fade" id="comment-form-Modal" tabindex="-1" role="dialog" aria-labelledby="comment-form-Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="comment-form-Label">Добавление комментария</h4>
+      </div>
+      <div class="modal-body">
+        <div class="comment-form">
+          <%= render 'comments/form' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary create-comment-button">Сохранить изменения</button>
+      </div>
     </div>
   </div>
 </div>

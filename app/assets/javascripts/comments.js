@@ -17,20 +17,20 @@ jQuery(function ($) {
             })
         });
         
-        $('.open-comment-form-button').click(function (e) {
-            e.preventDefault();
-            $(this).hide();
-            $('.comment-form').show();
+        // $('.open-comment-form-button').click(function (e) {
+        //     e.preventDefault();
+        //     $(this).hide();
+        //     $('.comment-form').show();
+        //
+        // });
 
-        });
-
-        $('.hide-comment-form').click(function (e) {
-            e.preventDefault();
-            $('.comment-form').hide();
-            $('.open-comment-form-button').show();
-            $('#comment_body').text('');
-            $('#comment_author').val('');
-        })
+        // $('.hide-comment-form').click(function (e) {
+        //     e.preventDefault();
+        //     $('.comment-form').hide();
+        //     $('.open-comment-form-button').show();
+        //     $('#comment_body').text('');
+        //     $('#comment_author').val('');
+        // })
 
         // $('.create-comment-button').click( function (event) {
         //     event.preventDefault();
