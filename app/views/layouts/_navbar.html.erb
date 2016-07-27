@@ -11,8 +11,10 @@
           <!--</ul>-->
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+                <li class="or-text">
+                  <span>Здравствуйте, <%= current_user.name %></span>
+                </li>
                 <li>
-                  <span>Здравствуйте, <%= current_user.email %></span>
                   <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
                 </li>
               <% else %>

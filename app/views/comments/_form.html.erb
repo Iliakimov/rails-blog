@@ -1,9 +1,5 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
     <p>
-      <%= f.label :Автор %><br>
-      <%= f.text_field :author %>
-    </p>
-    <p>
       <%= f.label :Текст %><br>
       <%= f.text_area :body %>
     </p>

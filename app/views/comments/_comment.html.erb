@@ -10,6 +10,8 @@
   </p>
 
   <p>
-    <button class="destroy-comment-button">x</button>
+    <% if user_signed_in? && (comment.user_id == current_user.id || current_user.id == 1) %>
+        <button class="destroy-comment-button">x</button>
+    <% end %>
   </p>
 </div>

@@ -7,13 +7,14 @@ namespace :db do
   task fill_db: :environment do
     Rake::Task['db:reset'].invoke
     require Rails.root.join('lib/factories.rb')
+    user = FactoryGirl.create(:user)
     10.times do |cat|
       count = 1 + rand(5)
       category = FactoryGirl.create(:category, {:name => Faker::Book.genre})
       count.times do |art|
-        article = FactoryGirl.create(:article, {:title => Faker::Book.title, :text => Faker::Lorem.paragraph, :category_id => category.id})
+        article = FactoryGirl.create(:article, {:title => Faker::Book.title, :text => Faker::Lorem.paragraph, :category_id => category.id, :user_id => user.id})
         2.times do
-          FactoryGirl.create(:comment, {:author => Faker::Book.author, :body => Faker::Lorem.paragraph, :article_id => article.id})
+          FactoryGirl.create(:comment, {:author => Faker::Book.author, :body => Faker::Lorem.paragraph, :article_id => article.id, :user_id => user.id})
         end
       end
 

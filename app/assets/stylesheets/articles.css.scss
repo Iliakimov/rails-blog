@@ -98,20 +98,21 @@ $color-lb: #00b3ee;
   display: inline-block;
   background-color: transparent;
   border-width: 0px;
+  color: $color-lb;
 }
 .simple-button:hover {
-  color: $color-lb;
+  color: black;
 }
 .simple-button:focus {
   outline: none;
 }
 .hard-button {
   a {
-    color: black;
+    color: $color-lb;
   }
   a:hover {
     text-decoration: none;
-    color: $color-lb;
+    color: black;
   }
 }
 .hard-button:hover {
@@ -175,9 +176,10 @@ $color-lb: #00b3ee;
     display: inline-block;
     background-color: transparent;
     border-width: 0px;
+    color: $color-lb;
   }
   .create-article:hover {
-    color: $color-lb;
+    color: black;
   }
   .create-article:focus {
     outline: none;
@@ -187,11 +189,11 @@ $color-lb: #00b3ee;
     background-color: transparent;
     border-width: 0px;
     a {
-      color: black;
+      color: $color-lb;
     }
     a:hover {
       text-decoration: none;
-      color: $color-lb;
+      color: black;
     }
   }
   .undo-create-article:hover {
@@ -208,27 +210,27 @@ $color-lb: #00b3ee;
   h1 {
     color: $color-lb;
   }
-  tr.article-srting {
-    height: 45px;
-    .control-btn {
-      display: none;
+
+  .article-item {
+    padding: 20px;
+    //min-height: 200px;
+    min-width: 600px;
+    h2 {
+      color: $color-lb;
+      margin-top: 0px;
+
+      .date-ago {
+        color: black;
+        font-size: 13px !important;
+        font-weight: 200;
+      }
     }
-    .article-name {
-      cursor: default;
-    }
-    td {
-      padding: 10px !important;
-    }
+
+
   }
 
-  tr.article-srting:hover {
-    background-color: #F7F7F7;
-    .article-name {
-      color: $color-lb;
-    }
-    .control-btn {
-      display: inline-block;
-    }
+  .article-item:hover {
+    background-color: #f1f1f1 !important;
   }
 }
 

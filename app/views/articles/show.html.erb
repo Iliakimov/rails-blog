@@ -13,13 +13,15 @@
 
           <div class="row text-center">
             <div class="col-md-4">
-
+              <%= @user.name %>
             </div>
             <div class="col-md-4">
               <%= time_ago_in_words(@article.created_at) %> назад
             </div>
             <div class="col-md-4">
-              <button class="change-article simple-button" data-toggle="modal" data-target="#myModal">Изменить</button>
+              <% if user_signed_in? && (@user.id == current_user.id || current_user.id == 1) %>
+                <button class="change-article simple-button" data-toggle="modal" data-target="#myModal">Изменить</button>
+              <% end %>
             </div>
           </div>
         </div>
@@ -31,7 +33,9 @@
         <%= render @article.comments %>
       </div>
       <div class="text-center form-and-buttons">
-        <button class="open-comment-form-button" data-toggle="modal" data-target="#comment-form-Modal">Оставить комментарий</button>
+        <% if user_signed_in? %>
+          <button class="open-comment-form-button" data-toggle="modal" data-target="#comment-form-Modal">Оставить комментарий</button>
+        <% end %>
       </div>
     </div>
     <div class="col-md-4">
