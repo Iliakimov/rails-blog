@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
+
   def index
     @articles = Article.all
     @categories = Category.all
@@ -6,6 +8,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @categories = Category.all
+    @user = User.find(@article.user_id)
   end
 
   def new
@@ -25,6 +29,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     puts ('start')
+    @article.user_id = current_user.id
     if @article.save
       puts ('ok')
       # puts json: {status: 200, message: 'Success create'}
@@ -62,6 +67,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.permit(:id, :title, :text, :category_id)
+      params.permit(:id, :title, :text, :category_id, :user_id)
     end
 end

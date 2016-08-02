@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+  <body>
+    <h1 style="background-color: #00b3ee; width: 100%; height: 40px; font-weight: 200; padding-top: 20px; text-align: center; color: white;">Привет!</h1>
+    <p>
+      К статье <strong><%= @article.title %></strong> оставлен комментарий.<br>
+    </p>
+    <p>
+      <strong><%= @comment.author %></strong> написал:
+      <%= @comment.body %>
+    </p>
+    <p style="font-size: 13px;">
+      Спасибо за внимание. Удачного дня!
+    </p>
+  </body>
+</html>

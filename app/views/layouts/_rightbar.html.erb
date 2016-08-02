@@ -1,0 +1,15 @@
+<div class="right-bar">
+  <ul class="nav nav-stacked">
+    <li>Категории</li>
+    <ul class="second-level-nav">
+      <% @categories.each do |category| %>
+          <li><%= link_to category.name, category_path(category) %></li>
+      <% end %>
+    </ul>
+    <hr>
+    <li><%= link_to 'Все статьи', articles_path %></li>
+    <% if user_signed_in? %>
+      <li><%= link_to 'Создать новую', new_article_path %></li>
+    <% end %>
+  </ul>
+</div>
